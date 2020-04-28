@@ -1,0 +1,58 @@
+# Project: CalculateFinalProject
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = algebra.o exceptionHandler.o Numbers.o Rectangle.o Shape.o Square.o testVect.o ThreeDimensional.o TwoDimensional.o vect.o Vector3D.o
+LINKOBJ  = algebra.o exceptionHandler.o Numbers.o Rectangle.o Shape.o Square.o testVect.o ThreeDimensional.o TwoDimensional.o vect.o Vector3D.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/boost"
+BIN      = CalculateFinalProject.exe
+CXXFLAGS = $(CXXINCS) -std=gnu++11
+CFLAGS   = $(INCS) -std=gnu++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+algebra.o: algebra.cpp
+	$(CPP) -c algebra.cpp -o algebra.o $(CXXFLAGS)
+
+exceptionHandler.o: exceptionHandler.cpp
+	$(CPP) -c exceptionHandler.cpp -o exceptionHandler.o $(CXXFLAGS)
+
+Numbers.o: Numbers.cpp
+	$(CPP) -c Numbers.cpp -o Numbers.o $(CXXFLAGS)
+
+Rectangle.o: Rectangle.cpp
+	$(CPP) -c Rectangle.cpp -o Rectangle.o $(CXXFLAGS)
+
+Shape.o: Shape.cpp
+	$(CPP) -c Shape.cpp -o Shape.o $(CXXFLAGS)
+
+Square.o: Square.cpp
+	$(CPP) -c Square.cpp -o Square.o $(CXXFLAGS)
+
+testVect.o: testVect.cpp
+	$(CPP) -c testVect.cpp -o testVect.o $(CXXFLAGS)
+
+ThreeDimensional.o: ThreeDimensional.cpp
+	$(CPP) -c ThreeDimensional.cpp -o ThreeDimensional.o $(CXXFLAGS)
+
+TwoDimensional.o: TwoDimensional.cpp
+	$(CPP) -c TwoDimensional.cpp -o TwoDimensional.o $(CXXFLAGS)
+
+vect.o: vect.cpp
+	$(CPP) -c vect.cpp -o vect.o $(CXXFLAGS)
+
+Vector3D.o: Vector3D.cpp
+	$(CPP) -c Vector3D.cpp -o Vector3D.o $(CXXFLAGS)
