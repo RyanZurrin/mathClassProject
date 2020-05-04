@@ -1,5 +1,6 @@
-#include "vect.h"
-#include "vect3D.h"
+//#include "vect.h"
+
+#include <stdio.h>
 using namespace std;
  
 struct myVector{
@@ -19,7 +20,7 @@ void input3dPoints(){
     printf("Enter p2:");
     scanf("%d %d %d", &v2.x, &v2.y, &v2.z);
 }
- 
+/*
 struct myVector calculateParallelVector(int choice){
     if(choice == 1)
         return {v2.x - v1.x, v2.y - v1.y};
@@ -27,7 +28,7 @@ struct myVector calculateParallelVector(int choice){
         return {v2.x - v1.x, v2.y - v1.y, v2.z - v1.z};
     }
 };
- 
+ */
 void printParametricAndVectorForm(int point, struct myVector mv, struct myVector parallelVector){
         printf("Taking point p%d(%d, %d) on the line L we get parametric equation:\n", point, mv.x, mv.y);
         printf("L: x = %d + %dt, y = %d + %dt\n",  mv.x, parallelVector.x, mv.y, parallelVector.y);
@@ -46,7 +47,7 @@ void printParametricAndVectorForm(int point, struct myVector mv, struct myVector
         printf("<x, y, z> = <%d, %d, %d> + t <%d, %d, %d>\n",  mv.x, mv.y, mv.z, parallelVector.x, parallelVector.y, parallelVector.z);
         printf("\n\n");
 }
- 
+ /*
 int main(){
     int choice;
     struct myVector parallelVector;
@@ -90,4 +91,5 @@ int main(){
  
     return 0;
   }
+  */
   

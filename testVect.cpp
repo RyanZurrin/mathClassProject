@@ -14,21 +14,27 @@ using namespace std;
 
 int main()																																
 {	
-	ld x = 1;	
-	ld y = 2; //*DEGREE;//(PI)/4*DEGREE;
-	ld z = 3;
-	ld a = -1;
-	ld b = 2;
-	ld c = 0;
+	ld x = 10.0;	
+	ld y = 30.0; //*DEGREE;//(PI)/4*DEGREE;
+	ld z = 50.0;
+	double t = 3.0;
+	//ld a = -1;
+	//ld b = 2;
+	//ld c = 0;
 	
 	
 	Vector3D v(x, y, z);
-	//v.showAllData();
+	//Vector3D v1 = v.normalization();
+	v.showAllData();
 	
- 	Vector3D v2(a, b, c);
+	Vector3D v1 = v/t;
+	v1.showAllData();
+	//v1.showAllData();
+	
+ 	//Vector3D v2(a, b, c);
  	//testv.showAllData();
  	
-	cout << v.distance(v2) << endl;
+	//cout << v.distance(v2) << endl;
  	/*	
 	v.showRectCord();
 	v.showAllData();

@@ -15,16 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mathClassProject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="algebra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="exceptionHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="parametric.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="testVect.cpp">
@@ -80,10 +74,10 @@
     <ClInclude Include="ThreeDimensional.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Square.h">
+    <ClInclude Include="Rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rectangle.h">
+    <ClInclude Include="Square.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

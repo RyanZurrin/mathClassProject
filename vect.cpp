@@ -21,6 +21,7 @@ Vector::Vector()
   object_counter++;
   cout<< object_counter << ": " <<"in the default constructor" <<endl;
 }
+
 Vector::Vector(char _mode)
 {	  
   x = 0;
@@ -60,18 +61,18 @@ void Vector::showAllData()const
   showRectCord();
   showPolarCord();
   showRevolutionAngle();
-  return_mode('p');
-  return_arcLength('p');
+  show_mode();
+  show_arcLength();
 }
 void Vector::showVector()const
 {
   if (mode == 'r' || mode == 'R') {
    showRectCord();
-   return_arcLength('p');
+   show_arcLength();
   }
   else {
    showPolarCord();
-   return_arcLength('p');
+   show_arcLength();
   }      
 }
 void Vector::showRectCord()const
@@ -169,27 +170,27 @@ returnX, no arguments or 'r'/'R' will just return, anything else will print out
 				 and return.
 */
  
-ld Vector::return_x(char v) const
+ld Vector::return_x() const
 {
   	return x;
 }
-ld Vector::return_y(char v)const
+ld Vector::return_y()const
 {  
 	return y;        
 }
-ld Vector::return_mag(char v)const
+ld Vector::return_mag()const
 {    
   	return magnitude;	      
 }
-ld Vector::return_angle(char v)const
+ld Vector::return_angle()const
 {  
   	return angle;   
 }
-ld Vector::return_arcLength(char v) const
+ld Vector::return_arcLength() const
 {  
     return arcLength;
 }
-char Vector::return_mode(char v)const
+char Vector::return_mode()const
 {
   return mode;      
 }
@@ -263,9 +264,27 @@ ld Vector::square()
 {
     return  x * x + y * y;
 }
-ld Vector::returnMagnitude()
+ld Vector::find_magnitude()
 {
     return ld();
+}
+ld Vector::dot_product(const Vector& vec)
+{
+    return  x * vec.x + vec.y * y;
+}
+ld Vector::distance(const Vector& vec)
+{
+    return ld();
+}
+ld Vector::cross_product2D(const Vector& v)
+{
+    return (x * v.y) - (y * v.x);   
+}
+Vector Vector::normalization()
+{
+    assert(find_magnitude() != 0);
+    *this /= find_magnitude();
+    return *this;
 }
 /*
 void Vector::setPolarCurve()
@@ -472,9 +491,9 @@ Vector &Vector::operator=(const Vector *vec)
 Vector& Vector::operator=(Vector&& right)noexcept
 {
      if (this != &right)
-     {
-         EIGEN_CORE_H::swap(x, right.x);
-         EIGEN_CORE_H::swap(y, right.y);
+     {         
+         swap(x, right.x);
+         swap(y, right.y);
          this->calculate_polar();
      }
      return *this;

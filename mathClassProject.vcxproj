@@ -72,9 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -151,9 +153,7 @@
   <ItemGroup>
     <ClCompile Include="algebra.cpp" />
     <ClCompile Include="exceptionHandler.cpp" />
-    <ClCompile Include="mathClassProject.cpp" />
     <ClCompile Include="Numbers.cpp" />
-    <ClCompile Include="parametric.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Square.cpp" />
