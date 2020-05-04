@@ -8,10 +8,9 @@
 #include <iostream>
 #include <iomanip>
 #include <cassert>
-#include <assert.h>
 #include <cmath>
 #include <complex>
-
+#include <assert.h>
 
 using namespace std;
 typedef long double ld;
@@ -40,6 +39,7 @@ class Vector
       void    calculate_rectangular();
       void    calculate_polar();
       void    calculate_arcLength();
+      Vector  check_division(ld);
       
       //void    calculate_derivative();
 
@@ -47,6 +47,7 @@ class Vector
   //    Vector calculate_parallel_vector2d( Vector&, Vector&);
 
    public:			
+      Vector * _ptr2d;
 	  Vector(); //default constructor      
       Vector(char);//mode select, defaults to 0, in rectangular, constructor
       Vector(ld, ld, char _mode = 'r'); //constructor takes both coordinates and mode
@@ -110,10 +111,9 @@ class Vector
       Vector operator-(const ld number)const;
       Vector operator-()const;      
       Vector operator--();
-      Vector operator--(int);
-
+      Vector operator--(int);      
       
-      virtual Vector* operator/(ld);
+      Vector operator/(ld);
       Vector operator/(double);
       Vector operator/(int);
       virtual Vector &operator/=(ld);
@@ -136,3 +136,6 @@ class Vector
       virtual ~Vector();    
 };
 #endif
+
+
+

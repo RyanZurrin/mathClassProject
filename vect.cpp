@@ -4,6 +4,7 @@
 // Implementation for Vector class.
 
 #include "vect.h"   
+#include "exceptionHandler.h"
 //#include "Vector3D.h"
 using namespace std;
 int Vector::object_counter = 0;
@@ -365,6 +366,26 @@ void Vector::calculate_arcLength()
   arcLength = (PI * (magnitude*2)) *
         (angle / 360.0);
 }
+Vector Vector::check_division(ld d)
+{
+    cout << "in 2dmemberFunction/check division ld\n";
+    ExceptionHandler checker;
+    if (checker.zeroDivisorCheck(d) == 0 && checker.checkedFlag == false) {
+        checker.checkedFlag = true;
+        Vector temp(x / d, y / d);
+        calculate_polar();
+        calculate_angle();
+        return temp;
+    }
+    else if (checker.zeroDivisorCheck(d) != 0 && checker.checkedFlag == false) {
+        d = checker.zeroDivideFix(d);
+        checker.checkedFlag = true;
+        Vector temp(x / d, y / d);
+        calculate_polar();
+        calculate_angle();
+        return temp;
+    }
+}
 /*
 Vector Vector::calculate_parallel_vector2d(Vector & v1, Vector & v2)
 {
@@ -511,93 +532,29 @@ Vector::Vector(Vector&& temp) noexcept
     arcLength = return_arcLength();     
     calculate_arcLength();   
 }
-Vector* Vector::operator/(ld value)
-{
-    do {
-        if (value != 0) {
-            Vector* temp;
-            temp = new Vector(x / value, y / value);
-            return temp;
-            cout << "deleting temp in divide operater" << endl;
-            delete temp;            
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> value;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || value == 0);
-        }
-    } while (value > 0 && !cin == false);
-    
-
+Vector Vector::operator/(ld d)
+{  
+    return check_division(d);   
 }
 Vector Vector::operator/(double d)
 {
-    do {
-        if (d != 0) {
-            return Vector(x / d, y / d);
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> d;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || d == 0);
-        }
-    } while (d != 0 && !cin == false);
-   
+    return check_division(d);   
 }
 Vector Vector::operator/(int d)
 {
-    do {
-        if (d != 0) {
-            return Vector(x / d, y / d);
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> d;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || d == 0);
-        }
-    } while (d != 0 && !cin == false);
-    return Vector();
+    return check_division(d);   
 }
 Vector &Vector::operator/=(ld value)
 {
-
-    do {
-        if (value != 0) {
-            x /= value;
-            y /= value;
-            calculate_polar();
-            return *this;           
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> value;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || value == 0);
-        }
-    } while (value != 0 && !cin == false);
-
-    /*
-    assert(value != 0);
+    cout << "in 2D operator/= ld value\n";
+    ExceptionHandler checker;
+    checker.zeroDivisorCheck(value);
     x /= value;
     y /= value;
     calculate_polar();
+    calculate_angle();
     return *this;
-    */
+    
 }
 Vector Vector::operator*(const ld scalar)const
 {

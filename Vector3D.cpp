@@ -1,12 +1,13 @@
 #include "Vector3D.h"
 #include "exceptionHandler.h"
-#include <assert.h>
 using namespace std;
 Vector3D::Vector3D() //constructor
 {
   x=0;
   y=0;
   z=0;
+  _ptr3d = nullptr;
+  _ptr2d = nullptr;
   set_allAngles();
   object_counter++;
   cout<< object_counter << ": " <<"in the 3dVector default constructor"<<endl;
@@ -16,6 +17,8 @@ Vector3D::Vector3D(ld x1,ld y1,ld z1)  //initializing object with values.
   x=x1;
   y=y1;
   z=z1;
+  _ptr3d = nullptr;
+  _ptr2d = nullptr;
   set_magnitude();
   set_allAngles();  
   object_counter++;
@@ -26,6 +29,8 @@ Vector3D::Vector3D(const Vector3D &vec)
   x=vec.x;
   y=vec.y;
   z=vec.z;
+  _ptr3d = vec._ptr3d;
+  _ptr2d = vec._ptr2d;
   set_magnitude();
   set_allAngles();
   object_counter++;
@@ -96,6 +101,26 @@ void Vector3D::set_magnitude()
     magnitude = find_magnitude();
 }
 
+Vector3D Vector3D::check_division(ld d)
+{
+    cout << "in 3Doperator/check division ld\n";
+    ExceptionHandler checker;
+    if (checker.zeroDivisorCheck(d) == 0 && checker.checkedFlag == false) {
+        checker.checkedFlag = true;
+        Vector3D temp(x / d, y / d, z / d);
+        set_allAngles();
+        return temp;
+    }
+    else if (checker.zeroDivisorCheck(d) != 0 && checker.checkedFlag == false) {
+        d = checker.zeroDivideFix(d);
+        checker.checkedFlag = true;
+        Vector3D temp(x / d, y / d, z / d);
+        set_allAngles();
+        return temp;
+    }
+    //return *this;
+}
+
 //addition
 Vector3D Vector3D::operator+(const Vector3D &vec)const
 {
@@ -164,74 +189,23 @@ Vector3D &Vector3D::operator*=(ld value)
 
 //scalar division
 
-
-Vector3D* Vector3D::operator/(ld d)
+Vector3D Vector3D::operator/(ld d)
 {
-    cout << "in 3Doperater/ld_d\n";
-    ExceptionHandler checker;
-    checker.zeroDivisorCheck(d);
-    if (checker.zeroDivisorCheck(d) == 0) {
-        Vector3D* temp;
-        temp = new Vector3D(x / d, y / d, z / d);
-        return temp;
-    }
-    
-    /*
-    do{
-    if (d != 0) {
-        Vector3D* temp;
-        temp = new Vector3D(x / d, y / d, z / d);
-        return temp;        
-    }  
-
-    else
-    {
-        do
-        {
-            cout << "**ERROR** can't divide by 0, enter new number\n>";
-            cin >> d;
-            cin.clear();
-            cin.ignore(100, '\n');
-        } while (!cin || d == 0);
-      }
-    } while (d != 0 && !cin == false);
-  
-    return this;
-    */
-  
+   return check_division(d);
+   
 }
+
+
+
 Vector3D Vector3D::operator/(double d)
 {
-    cout << "in 3Doperator/double_d\n";
-    ExceptionHandler checker;
-    checker.zeroDivisorCheck(d); 
-    Vector3D temp(x / d, y / d, z / d);
-    set_allAngles();
-    return temp;
+    return check_division(d);
+   
 }
 Vector3D Vector3D::operator/(int d)
 {
-    cout << "in 3Doperator/int_d\n";
-    ExceptionHandler checker;
-    checker.zeroDivisorCheck(d);
-    if (checker.zeroDivisorCheck(d) == 0)
-        return Vector3D(x / d, y / d, z / d);
-    /*
-    do {
-        if (d != 0) {
-            return Vector3D(x / d, y / d, z / d);
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> d;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || d == 0);
-        }
-    } while (d != 0 && !cin == false); 
-    */
+    return check_division(d);
+   
 }
 
 Vector3D &Vector3D::operator/=(ld value)

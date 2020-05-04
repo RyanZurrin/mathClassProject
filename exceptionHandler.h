@@ -58,10 +58,12 @@ inline T ExceptionHandler::zeroDivisorCheck(T num)
 template<typename T>
 inline T ExceptionHandler::zeroDivideFix(T num)
 {
+	ld temp;
 	if (checkedFlag == false && num == 0) {
 		do {
 			cout << "You cannot divide by zero, please enter a new number\n>:";
-			cin >> num;
+			cin >> temp;
+			num = temp;
 			return num;
 			cin.ignore(100, '\n');
 			cin.clear();

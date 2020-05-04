@@ -17,18 +17,21 @@ int main()
 	ld x = 10.0;	
 	ld y = 30.0; //*DEGREE;//(PI)/4*DEGREE;
 	ld z = 50.0;
-	double t = 3.0;
+	double t = 3;
 	//ld a = -1;
 	//ld b = 2;
 	//ld c = 0;
 	
 	
 	Vector3D v(x, y, z);
+	Vector test(2,3);
 	//Vector3D v1 = v.normalization();
 	v.showAllData();
-	
+	test.showAllData();
 	Vector3D v1 = v/t;
+	Vector test2 = test/t;
 	v1.showAllData();
+	test2.showAllData();
 	//v1.showAllData();
 	
  	//Vector3D v2(a, b, c);

@@ -12,22 +12,26 @@ private:
     ld z, xAngle, yAngle, zAngle;
     void set_allAngles();
     void set_magnitude();
+    Vector3D check_division(ld);
 
 public:    
+    Vector3D* _ptr3d;
+   
     Vector3D(); //constructor    
     Vector3D(ld, ld, ld);  //initializing object with values.    
     Vector3D(const Vector3D &vec);    //copy constructor    
+
     
     void setX(ld);
     void setY(ld);
     void setZ(ld);
-		void set_xAngle(ld);
-		void set_yAngle(ld);
-		void set_zAngle(ld);
-		
-		void showAllData();
-		void showPolarCord()const;
-		void disp();    //display value old vectors
+    void set_xAngle(ld);
+    void set_yAngle(ld);
+    void set_zAngle(ld);
+    
+    void showAllData();
+    void showPolarCord()const;
+    void disp();    //display value old vectors
     ld returnX(); //return x
     ld returnY(); //return y
     ld returnZ(); //return z
@@ -54,7 +58,7 @@ public:
     Vector3D &operator-=(const Vector3D &vec);  //assigning new result to the vector
     Vector3D operator*(ld value);    //multiplication
     Vector3D &operator*=(ld value);  //assigning new result to the vector.
-    Vector3D* operator/(ld value);    //division
+    Vector3D operator/(ld value);    //division    
     Vector3D operator/(double);    //division
     Vector3D operator/(int);
     Vector3D &operator/=(ld value);  //assigning new result to the vector
@@ -63,3 +67,6 @@ public:
     ~Vector3D(); 
 };
 #endif
+
+
+
