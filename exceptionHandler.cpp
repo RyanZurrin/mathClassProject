@@ -1,19 +1,21 @@
 #include "exceptionHandler.h"
 
+/*
 void ExceptionHandler::addErrorToList(int code, string s)
 {
     error_codes[code] = s;
 }
-
+*/
 ExceptionHandler::ExceptionHandler()
 {
-    exceptionCode = 0;
+    //exceptionCode = 0;
     checkedFlag = false;
-    exceptionMessage = "No message.";
-    exceptionSource = "No source.";
-    cout << "in except default constructor" << endl;
+    //exceptionMessage = "No message.";
+    //exceptionSource = "No source.";
+   // cout << "in except default constructor" << endl;
 
 }
+/*
 ExceptionHandler::ExceptionHandler(int T)
 {
     exceptionCode = T;
@@ -26,7 +28,24 @@ void ExceptionHandler::checkErrorCode(int code) const
 {
     cout << error_codes.at(code) << endl;
 }
+*/
 
+double ExceptionHandler::zeroDivideFix(double num)
+{
+    double temp;
+    if (checkedFlag == false && num == 0) {
+        do {
+            cout << "You cannot divide by zero, please enter a new number\n>:";
+            cin >> temp;
+            //num = temp;
+            return temp;
+            cin.ignore(100, '\n');
+            cin.clear();
+        } while (!cin || temp == 0);
+    }
+    return num;
+}
+/*
 string ExceptionHandler::getExceptionSource(string s)
 {
     exceptionSource = s;
@@ -44,9 +63,9 @@ int ExceptionHandler::getExceptionCode(int c)
     exceptionCode = c;
     return exceptionCode;
 }
-
+*/
 /*
- bool ExceptionHandler::zeroDivisorCheck(ld T)
+ bool ExceptionHandler::zeroDivisorCheck(double T)
 {
 
      cout << "in first zDC b4 do" << endl;
@@ -77,7 +96,7 @@ int ExceptionHandler::getExceptionCode(int c)
 }
 */
 /*
- bool ExceptionHandler::zeroDivisorCheck(ld _X, ld _Y, ld _Z)
+ bool ExceptionHandler::zeroDivisorCheck(double _X, double _Y, double _Z)
  {  
       ExceptionHandler checker;
       checker.zeroDivisorCheck(_X,_Y,_Z);
@@ -102,12 +121,13 @@ int ExceptionHandler::getExceptionCode(int c)
         // } while (_X == 0 && _Y == 0 && _Z == 0 != 0 && !cin == false);
      
  }
- */
- bool ExceptionHandler::negitiveNumberCheck(ld num)
+
+ bool ExceptionHandler::negitiveNumberCheck(double num)
  {
      if (num < 0)
          return true;
      return false;
  }
+  */
 
 

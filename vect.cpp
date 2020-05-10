@@ -5,7 +5,7 @@
 
 #include "vect.h"   
 #include "exceptionHandler.h"
-//#include "Vector3D.h"
+
 using namespace std;
 int Vector::object_counter = 0;
 Vector::Vector()
@@ -19,12 +19,14 @@ Vector::Vector()
   revolutionAngle_inDegrees = 0.0;
   mode = 'r';   
   validate_setMode();  
+ // setprecision(7);
   object_counter++;
   cout<< object_counter << ": " <<"in the default constructor" <<endl;
 }
 
 Vector::Vector(char _mode)
 {	  
+  //setprecision(7);
   x = 0;
   y = 0;  
   magnitude = 0;
@@ -41,8 +43,9 @@ Vector::Vector(char _mode)
   the third argument is the mode setting. 
   Use 'r'/'R' for rectangular components, 'p'/'P' for polar components
 */ 
-Vector::Vector(ld xMag, ld yAng, char _mode)
+Vector::Vector(double xMag, double yAng, char _mode)
 {  
+  //setprecision(7);
   mode = _mode;
   set_coordinates(xMag, yAng, _mode);
   object_counter++;
@@ -50,15 +53,17 @@ Vector::Vector(ld xMag, ld yAng, char _mode)
 }
 Vector::Vector(const Vector &v)
 {
-	
+   // setprecision(7);
     x=v.x;
     y=v.y;
+    mode = v.mode;
     calculate_polar();
     object_counter++;
 	cout<< object_counter << ": " <<"in the copy constructor"<<endl;
 }
 void Vector::showAllData()const
 {   
+ // setprecision(7);
   showRectCord();
   showPolarCord();
   showRevolutionAngle();
@@ -66,7 +71,7 @@ void Vector::showAllData()const
   show_arcLength();
 }
 void Vector::showVector()const
-{
+{ 
   if (mode == 'r' || mode == 'R') {
    showRectCord();
    show_arcLength();
@@ -78,8 +83,9 @@ void Vector::showVector()const
 }
 void Vector::showRectCord()const
 {  
-	 cout << "\n(x,y) = ";
-	
+     cout << setprecision(9) << fixed;
+     
+	 cout << "\n(x,y) = ";	
 	 if(x < 0 && x > -1 ){
 	 	 cout << setiosflags(ios::fixed);
      cout << fixed << "(" << x << "," 
@@ -99,6 +105,7 @@ void Vector::showRectCord()const
 }
 void Vector::showPolarCord()const
 {  
+    cout << setprecision(9) << fixed;
 	 if(magnitude < 0 || angle < 0){
 	 cout << setiosflags(ios::fixed);
    cout << "\n<r,\xE9> = <" << magnitude << "," << angle << "\xF8>" 
@@ -112,7 +119,7 @@ void Vector::showPolarCord()const
 }
 void Vector::showRevolutionAngle()const
 {    
-  ld temp = 0;
+  double temp = 0;
    cout << "\nrevolution degrees:  " << revolutionAngle_inDegrees
          << endl;    
    cout << "full revolutions:    " 
@@ -154,6 +161,7 @@ void Vector::show_mode()const
 
 void Vector::show_arcLength() const
 {
+   cout << setprecision(7)<< fixed;
     cout << "\narc length: " << arcLength << endl;
 }
 
@@ -171,23 +179,23 @@ returnX, no arguments or 'r'/'R' will just return, anything else will print out
 				 and return.
 */
  
-ld Vector::return_x() const
+double Vector::return_x() const
 {
   	return x;
 }
-ld Vector::return_y()const
+double Vector::return_y()const
 {  
 	return y;        
 }
-ld Vector::return_mag()const
+double Vector::return_mag()const
 {    
   	return magnitude;	      
 }
-ld Vector::return_angle()const
+double Vector::return_angle()const
 {  
   	return angle;   
 }
-ld Vector::return_arcLength() const
+double Vector::return_arcLength() const
 {  
     return arcLength;
 }
@@ -201,7 +209,7 @@ char Vector::return_mode()const
   the third argument is the mode setting. 
   Use 'r'/'R' for rectangular components, 'p'/'P' for polar components
 */  
-void Vector::set_coordinates(ld xMag, ld yAng, char _mode)
+void Vector::set_coordinates(double xMag, double yAng, char _mode)
 {
   validate_setMode();
 
@@ -215,7 +223,7 @@ void Vector::set_coordinates(ld xMag, ld yAng, char _mode)
   }
   calculate_arcLength();
 }
-void Vector::set_rectCord(ld _x, ld _y)
+void Vector::set_rectCord(double _x, double _y)
 {
   x = _x;
   y = _y;
@@ -223,7 +231,7 @@ void Vector::set_rectCord(ld _x, ld _y)
   revolutionAngle_inDegrees = angle;
 }
 
-void Vector::set_polarCord(ld mag, ld ang)
+void Vector::set_polarCord(double mag, double ang)
 {
   magnitude = mag;
   normalize_magnitude();
@@ -232,24 +240,24 @@ void Vector::set_polarCord(ld mag, ld ang)
   adjust_angle();
   calculate_rectangular(); 
 }
-void Vector::set_x(ld _x)
+void Vector::set_x(double _x)
 {
   x = _x;  
   calculate_polar();
 }
-void Vector::set_y(ld _y)
+void Vector::set_y(double _y)
 { 
   y = _y;
   calculate_polar();
 }
-void Vector::set_mag(ld mag)
+void Vector::set_mag(double mag)
 {  
   magnitude = mag; 
   normalize_magnitude();
   calculate_rectangular();
   calculate_arcLength();
 }
-void Vector::set_angle(ld ang)
+void Vector::set_angle(double ang)
 {  
   angle = ang;
   adjust_angle();
@@ -261,23 +269,23 @@ void Vector::set_mode(char _mode)
   mode = _mode;
   validate_setMode();
 }
-ld Vector::square()
+double Vector::square()
 {
     return  x * x + y * y;
 }
-ld Vector::find_magnitude()
+double Vector::find_magnitude()
 {
-    return ld();
+    return double();
 }
-ld Vector::dot_product(const Vector& vec)
+double Vector::dot_product(const Vector& vec)
 {
     return  x * vec.x + vec.y * y;
 }
-ld Vector::distance(const Vector& vec)
+double Vector::distance(const Vector& vec)
 {
-    return ld();
+    return double();
 }
-ld Vector::cross_product2D(const Vector& v)
+double Vector::cross_product2D(const Vector& v)
 {
     return (x * v.y) - (y * v.x);   
 }
@@ -332,7 +340,7 @@ void Vector::adjust_angle()
 	if (angle >= 360){
         const int rev_degrees = static_cast<int>(angle) / 360;
 		const int to_subtract = rev_degrees *360;
-		const ld new_angle = angle - to_subtract;
+		const double new_angle = angle - to_subtract;
 		angle = new_angle;
 	}else if (angle < 0 && angle > -360){
 		angle += 360;
@@ -340,7 +348,7 @@ void Vector::adjust_angle()
 	}else if(angle < -360){
 		const int rev_degrees = static_cast<int>(angle) /360;
 		const int to_subtract = rev_degrees *360;
-		const ld newAngle = angle - to_subtract + 360;
+		const double newAngle = angle - to_subtract + 360;
 		angle = newAngle;
     }  
 }
@@ -366,13 +374,14 @@ void Vector::calculate_arcLength()
   arcLength = (PI * (magnitude*2)) *
         (angle / 360.0);
 }
-Vector Vector::check_division(ld d)
+Vector Vector::check_division(double d)
 {
-    cout << "in 2dmemberFunction/check division ld\n";
+    cout << "in 2dmemberFunction/check division double\n";
+    Vector temp;
     ExceptionHandler checker;
     if (checker.zeroDivisorCheck(d) == 0 && checker.checkedFlag == false) {
         checker.checkedFlag = true;
-        Vector temp(x / d, y / d);
+        temp.set_coordinates(x / d, y / d, 'r');
         calculate_polar();
         calculate_angle();
         return temp;
@@ -380,11 +389,36 @@ Vector Vector::check_division(ld d)
     else if (checker.zeroDivisorCheck(d) != 0 && checker.checkedFlag == false) {
         d = checker.zeroDivideFix(d);
         checker.checkedFlag = true;
-        Vector temp(x / d, y / d);
+        temp.set_coordinates(x / d, y / d, 'r');
         calculate_polar();
         calculate_angle();
         return temp;
     }
+    return *this;
+}
+
+
+Vector Vector::check_division(Vector d)
+{
+    cout << "in 2dmemberFunction/check division Vector\n";
+    Vector temp;
+    ExceptionHandler checker;
+    if (checker.zeroDivisorCheck(d) == 0 ) {// && checker.checkedFlag == false
+        checker.checkedFlag = true;
+        temp.set_coordinates(x / d.x, y / d.y, 'r');
+        calculate_polar();
+        calculate_angle();
+        return temp;
+    }
+    else if (checker.zeroDivisorCheck(d) != 0 && checker.checkedFlag == false) {
+        d = checker.zeroDivideFix(d);
+        checker.checkedFlag = true;
+        temp.set_coordinates(x / d.x, y / d.y,'p');
+        calculate_polar();
+        calculate_angle();
+        return temp;
+    }
+    return temp;
 }
 /*
 Vector Vector::calculate_parallel_vector2d(Vector & v1, Vector & v2)
@@ -399,22 +433,42 @@ bool Vector::operator<(const Vector &v) const
     return true;
   return false;  
 }
+bool Vector::operator<=(const Vector& v) const
+{
+    if (magnitude <= v.magnitude)
+        return true;
+    return false;
+}
 bool Vector::operator>(const Vector & v)const
 {
   if (magnitude > v.magnitude)
     return true;
   return false;
 }
+bool Vector::operator>=(const Vector& v) const
+{
+    if (magnitude >= v.magnitude)
+        return true;
+	return false;
+}
 bool Vector::operator==(const Vector & v)const
 {
-  if (magnitude == v.magnitude)
+  if (magnitude == v.magnitude && angle == v.angle)
     return true;
   return false;
 }
 
-Vector Vector::operator+(const ld n)const
+bool Vector::operator!=(const Vector& v) const
 {
-	cout << "in  Vector::operator+(const ld n)const"<<endl;
+    if (!(magnitude == v.magnitude && angle == v.angle))
+        return true;
+    else
+        return false;
+}
+
+Vector Vector::operator+(const double n)const
+{
+	cout << "in  Vector::operator+(const double n)const"<<endl;
 	Vector total(x + n, y + n);
 	total.mode = mode;	
 	return total;
@@ -459,7 +513,7 @@ Vector Vector::operator-(const Vector& v)
   Vector sum(x-v.x, y-v.y, mode);
   return sum;
 }
-Vector Vector::operator-(const ld number)const
+Vector Vector::operator-(const double number)const
 {
 	Vector total(x - number, y - number);  
 	total.mode = mode;  
@@ -483,22 +537,25 @@ Vector Vector::operator--(int)
   difference.mode = mode;
   return difference; 
 }	
-Vector operator-(ld s, Vector& v)
+Vector operator-(double s, Vector& v)
 {
  Vector total(s-v.return_x(),s-v.return_y(),v.return_mode()); 
  return total;
 }
-Vector operator+(ld s, Vector& v)
+Vector operator+(double s, Vector& v)
 {
  Vector total(s+v.return_x(),s+v.return_y(),v.return_mode()); 
  return total; 
 }
-Vector &Vector::operator=(const Vector &vec)
+const Vector Vector::operator=(const Vector &right)
 {  
-  x = vec.x;
-  y = vec.y;
-  calculate_polar();
-  calculate_arcLength();
+  if (this != &right) {
+
+        x = right.x;
+        y = right.y;
+        calculate_polar();
+        calculate_arcLength();
+    }
   return *this;
 }
 Vector &Vector::operator=(const Vector *vec)
@@ -532,21 +589,22 @@ Vector::Vector(Vector&& temp) noexcept
     arcLength = return_arcLength();     
     calculate_arcLength();   
 }
-Vector Vector::operator/(ld d)
+Vector Vector::operator/(double d)
 {  
     return check_division(d);   
 }
-Vector Vector::operator/(double d)
-{
-    return check_division(d);   
-}
+
 Vector Vector::operator/(int d)
 {
     return check_division(d);   
 }
-Vector &Vector::operator/=(ld value)
+Vector Vector::operator/(Vector v)
 {
-    cout << "in 2D operator/= ld value\n";
+    return check_division(v);
+}
+Vector &Vector::operator/=(double value)
+{
+    cout << "in 2D operator/= double value\n";
     ExceptionHandler checker;
     checker.zeroDivisorCheck(value);
     x /= value;
@@ -556,13 +614,13 @@ Vector &Vector::operator/=(ld value)
     return *this;
     
 }
-Vector Vector::operator*(const ld scalar)const
+Vector Vector::operator*(const double scalar)const
 {
 	Vector results(x*scalar, y*scalar);	
 	results.mode = mode;
 	return results;	
 }
-Vector operator*(ld s, Vector& v)
+Vector operator*(double s, Vector& v)
 {
   return v * s;
 }

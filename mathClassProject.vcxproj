@@ -152,25 +152,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="algebra.cpp" />
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="exceptionHandler.cpp" />
     <ClCompile Include="Numbers.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Square.cpp" />
-    <ClCompile Include="testVect.cpp" />
+    <ClCompile Include="driverTestProgram.cpp" />
     <ClCompile Include="ThreeDimensional.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TwoDimensional.cpp" />
     <ClCompile Include="vect.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algebra.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="exceptionHandler.h" />
     <ClInclude Include="Numbers.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="ThreeDimensional.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="TwoDimensional.h" />
     <ClInclude Include="vect.h" />
     <ClInclude Include="Vector3D.h" />
