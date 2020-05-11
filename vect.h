@@ -1,5 +1,8 @@
+#pragma once
 //author:			Ryan Zurrin
 //file:           vect.h (XL)
+// Part of a final project in c++ II, this program as a whole
+// will calculate the properties of 2D and 3D objects and vectors
 
 // Specification file for a  vect class 
 #ifndef VECT_H
@@ -26,7 +29,8 @@ class Vector
 {
    static int object_counter;	 	 
    friend class Vector3D; 			  
-   protected:
+   public:
+      Vector* vptr2d;
       double x, y, magnitude, angle,
          arcLength, revolutionAngle_inDegrees;
       char mode;  //sets mode to Polar w/ 'p' or Rectangular w/ 'r'           
@@ -48,8 +52,8 @@ class Vector
   // private:
   //    Vector calculate_parallel_vector2d( Vector&, Vector&);
 
-   public:			
-      Vector * _ptr2d;
+ 			
+     
 	  Vector(); //default constructor      
       Vector(char);//mode select, defaults to 0, in rectangular, constructor
       Vector(double, double, char _mode = 'r'); //constructor takes both coordinates and mode

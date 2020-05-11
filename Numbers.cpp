@@ -7,9 +7,9 @@ Numbers::Numbers()
 	
 }
 
-void Numbers::printOutMap()
+void Numbers::printOutMap(int min, int max)
 {
-	for (int i = 0; i < 101; i++) {
+	for (int i = min; i < max; i++) {
 		cout << setprecision(9) << fixed;
 		double decNum = sqrt(i);
 		string num = to_string(i);
@@ -17,7 +17,7 @@ void Numbers::printOutMap()
 		string toMap = str + num;
 		cout << toMap << " = " << decNum << endl;
 		squareRootsList.emplace(decNum, toMap);
-		cout << squareRootsList.at(decNum) << endl;
+		//cout << squareRootsList.at(decNum) << endl;
 	}
 }
 

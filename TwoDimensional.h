@@ -1,10 +1,14 @@
 #pragma once
+// Part of a final project in c++ II, this program as a whole
+// will calculate the properties of 2D and 3D objects and vectors
+
+// prgrammer:   Ryan Zurrin
+
 #ifndef TWODIMENSIONAL_H
 #define TWODIMENSIONAL_H
-
-//#include "Square.h"
+#include "Square.h"
 #include "Triangle.h"
-//#include "vect.h"//
+#include "vect.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -18,8 +22,11 @@ public:
 
 	//TwoDimensional* shps;
 	TwoDimensional();
+	TwoDimensional* _twoDpt;
 	Triangle TriangleObject;
-	//Square squareObject;
+	Square squareObject;
+	Vector vect;
+
 	//Triangle triangleObject;
 	//TwoDimensional(string);
 	/*

@@ -1,4 +1,9 @@
 #pragma once
+// Part of a final project in c++ II, this program as a whole
+// will calculate the properties of 2D and 3D objects and vectors
+
+// prgrammer:   Ryan Zurrin
+
 #ifndef NUMBERS_H
 #define NUMBERS_H
 #include <complex>
@@ -20,11 +25,12 @@ const double RADIAN = PI / 180;
 
 class Numbers 
 {
+	static int object_counter;
 private:
 	map<double, string> squareRootsList;
 public:
 	Numbers();	
-	void printOutMap();
+	void printOutMap(int, int);
 	void addNumTranslation(double);
 	double checkSquareRoot(double num);
 	void checkDecimal(double);

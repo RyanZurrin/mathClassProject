@@ -1,4 +1,9 @@
 #pragma once
+// Part of a final project in c++ II, this program as a whole
+// will calculate the properties of 2D and 3D objects and vectors
+
+// prgrammer:   Ryan Zurrin
+
 #ifndef  TRIANGLE_H
 #define  TRIANGLE_H
 #include <cmath>
@@ -12,8 +17,8 @@ class Triangle
 {
 	//friend class ExceptionHandler;
 private:
-	double sVal;
-	double rVal;
+	//double sVal;
+	//double rVal;
 
 	void calculate_angleA();
 	void calculate_angleB();
@@ -48,6 +53,8 @@ public:
 	double angle_C;
 	double area;
 	double parameter;
+	double sVal;// same as height. need to remove and refactor as my caculations rely on this val
+	double rVal;
 	bool   sss, aaa, sas, ssa, asa, aas;
 	
 	string sideType;

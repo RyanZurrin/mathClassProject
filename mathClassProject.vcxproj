@@ -172,6 +172,7 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="exceptionHandler.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Numbers.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Shape.h" />

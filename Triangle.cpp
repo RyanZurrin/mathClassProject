@@ -180,6 +180,8 @@ Triangle::Triangle(double a, double b, double c)
 	angle_B = 0;
 	angle_C = 0;
 	area = 0;
+	mode = 's';
+	sideType = "";
 	parameter = 0;
 	sss = 0;
 	aaa = 0;
@@ -288,9 +290,9 @@ void Triangle::update_triangle()
 	triangleTypeByAngle();
 	triangleTypeBySide();
 	//checkCongruent();
-	check_AAA(*this);
-	check_SAS(*this);
-	check_SSS(*this);
+	//check_AAA(*this);
+	//check_SAS(*this);
+	//check_SSS(*this);
 }
 
 void Triangle::calculate_angleA()
@@ -559,21 +561,22 @@ void Triangle::triangleTypeByAngle()
 	}
 	else {
 		longest = c;
-		if (longest < side_a) {
-			side_c = longest;
-			longest = side_a;
-			side_a = side_c;
+		if (longest < a) {
+			c = longest;
+			longest = b;
+			a = c;
 		}
-		if (longest < side_b) {
-			side_c = longest;
-			longest = side_b;
-			side_b = side_c;
+
+		if (longest < b) {
+			c = longest;
+			longest = b;
+			b = c;
 		}
-		if (side_a * side_a + side_b * side_b == longest * longest) {
+		if (a * a + b * b == longest * longest) {
 			//cout << "This is a right-angled triangle.\n";
 			angleType = "Right";
 		}
-		else if (side_a * side_a + side_b * side_b > longest * longest) {
+		else if (a * a + b * b > longest * longest) {
 			//cout << "This is an acute-angled triangle.\n";
 			angleType = "Acute";
 		}

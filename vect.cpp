@@ -10,6 +10,7 @@ using namespace std;
 int Vector::object_counter = 0;
 Vector::Vector()
 {
+  vptr2d = nullptr;
   x = 0;
   y = 0;  
   magnitude = 0.0;
@@ -67,7 +68,7 @@ void Vector::showAllData()const
   showRectCord();
   showPolarCord();
   showRevolutionAngle();
-  show_mode();
+ // show_mode();
   show_arcLength();
 }
 void Vector::showVector()const
@@ -273,17 +274,14 @@ double Vector::square()
 {
     return  x * x + y * y;
 }
-double Vector::find_magnitude()
-{
-    return double();
-}
 double Vector::dot_product(const Vector& vec)
 {
     return  x * vec.x + vec.y * y;
 }
 double Vector::distance(const Vector& vec)
 {
-    return double();
+    Vector dist = *this - vec;
+    return dist.find_magnitude();
 }
 double Vector::cross_product2D(const Vector& v)
 {
@@ -294,6 +292,10 @@ Vector Vector::normalization()
     assert(find_magnitude() != 0);
     *this /= find_magnitude();
     return *this;
+}
+double Vector::find_magnitude()
+{
+    return sqrt(square());
 }
 /*
 void Vector::setPolarCurve()
@@ -364,6 +366,7 @@ void Vector::calculate_polar()
         angle = 0.0;
     else
         angle = atan2(y, x)*DEGREE;
+
     adjust_angle();
     calculate_arcLength();
     revolutionAngle_inDegrees = angle;
@@ -403,7 +406,7 @@ Vector Vector::check_division(Vector d)
     cout << "in 2dmemberFunction/check division Vector\n";
     Vector temp;
     ExceptionHandler checker;
-    if (checker.zeroDivisorCheck(d) == 0 ) {// && checker.checkedFlag == false
+    if (checker.zeroDivisorCheck(d) == false ) {// && checker.checkedFlag == false
         checker.checkedFlag = true;
         temp.set_coordinates(x / d.x, y / d.y, 'r');
         calculate_polar();
@@ -411,9 +414,9 @@ Vector Vector::check_division(Vector d)
         return temp;
     }
     else if (checker.zeroDivisorCheck(d) != 0 && checker.checkedFlag == false) {
-        d = checker.zeroDivideFix(d);
+        d.magnitude = checker.zeroDivideFix(d.magnitude);
         checker.checkedFlag = true;
-        temp.set_coordinates(x / d.x, y / d.y,'p');
+        temp.set_coordinates(x / d.x, y / d.y,'r');
         calculate_polar();
         calculate_angle();
         return temp;

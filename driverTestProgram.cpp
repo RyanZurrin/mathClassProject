@@ -1,25 +1,16 @@
 /*______________________________________________________________________________
 author:			Ryan Zurrin
-program:		testVect.cpp
-due date: 			
-assignment:	build and test a Vector class for doing math on vectors	
-purpose:    gain a deeper understanding of classes and operator overloading
+program:		driverTestProgram.cpp
+due date: 			5/11/2020
+assignment:		Final Project - calcultor for 2D and 3D objects
 ______________________________________________________________________________*/
-//#include "vect.h"
-//#include "Vector3D.h"
-//#include "Numbers.h"
-//#include "TwoDimensional.h"
-//#include "ThreeDimensional.h"
-//#include "Square.h"
-#include "Shape.h"
-#include "Calculator.h"
+//#include "Shape.h"
+#include "Input.h"
+
+//using namespace std;
 
 char mainMenuChoice();
-//#include "Triangle.h"
 
-using namespace std;
-//______________________________________________________________________________
-//
 double squareLoop(int, int);
 
 int main()
@@ -28,51 +19,59 @@ int main()
 	double y = 0.0;
 	double results = 0.0;
 	Square sx, sy;
-	Square* result = nullptr;
+	Square* sq_result = nullptr;
+	Triangle tx, ty;
+	Triangle* tri_result = nullptr;
+	Vector vx, vy;
+	Vector* vect_result = nullptr; 
 	//result.area = 0;
 	char op = '+';
 	char menu = '1';
 	int opCount = 0;
 	Calculator c;
 	
+
+	Numbers ob;
+	//ob.printOutMap(100, 1001);
+
 	menu = mainMenuChoice();
   
   switch(menu)
   {
-  	case '1':  		
-		cout << "Basic Calculator - format: a + b | a - b | a * b | a / b" << endl;
+  	case '1': 
+		system("cls");
+		cout << "Basic Calculator - format:[ a + b | a - b | a * b | a / b  ]\n"
+			 << "use a '~' as opperator to exit"  << endl;
+		
   		while (true || !cin)
-  		{
-			//cin.ignore(100, 'n');
-			//	cin.clear();
-			
+  		{			
 			cout << "> ";
-  			cin >> x >> op >> y;  			
-  		if(!cin)
-  		{
-  			cout << "unrecognized character used" << endl;
-  			cin.ignore(100, '\n');
-  			cin.clear();
-  			continue;
-			}
+  			cin >> x >> op >> y; 
+
 			if (op == '/' && y == 0)
 			{
 				cout << "zero division error" << endl;
 				continue;
 			}
+			else if (!cin)
+					{
+						cout << "bad input entered" << endl;						
+						cin.clear();
+						cin.ignore(100, '\n');
+						continue;
+					}
 			else
 			{
 				results = c.basicMathOperation(x, op, y);
 				opCount++;
-			}
-  			
+			}  			
   			cout << " ["<<opCount<<"] "<< "= " << results << endl;
 			}
 			break;
 		case '2':
 			char  pick;
 			cout << "2D Calculator - chose an object to calculate" << endl
-				<< " 1. squares\t2. triangles\t3. circles" << endl << endl;
+				<< " 1. squares\t2. triangles\t3. 2dVectors" << endl << endl;
 			cin >> pick;
 			switch (pick)
 			{
@@ -80,6 +79,7 @@ int main()
 				system("cls");
 				cout << "you chose to calculte a square object" << endl;
 				cout << "format: squareSide1 +/-/*// squareSide2" << endl;
+				cout << "use a '~' as opperator to exit" << endl;
 				while (true)
 				{
 					cout << "> ";
@@ -89,29 +89,101 @@ int main()
 						cout << "zero division error" << endl;
 						continue;
 					}
+					else if (!cin)
+					{				
+						cout << "bad input entered" << endl;
+						cin.clear();
+						cin.ignore(100,'\n');
+						continue;
+					}
 					else
 					{
-						result = c.squareMathOperation(sx, op, sy);
+						sq_result = c.squareMathOperation(sx, op, sy);
 						opCount++;
-						result->calculate_area();
-						result->calculate_paramiter();
+						sq_result->calculate_area();
+						sq_result->calculate_paramiter();
 						cout << " [" << opCount << "] " 
-								 << " new square would have a side length of: " 
-								 << result->side << endl
-								 << " making a combined area of: " << result->area 
-								 << " and a parameter of: " << result->parimeter << endl;
-					}
-
-					//cout << " [" << opCount << "] " << " new square would have a side length of: " << result.side << endl
-					//<< " making a compined area of: " << result.area << " and a parameter of: " << result.parimeter << endl;
+								 << " new square has a side length of: " 
+								 << sq_result->side << endl
+								 << "with an area of: " << sq_result->area 
+								 << " and a parameter of: " << sq_result->parimeter << endl;
+					}					
 				}
 				break;
 			case '2':
 				cout << "you chose to calculte a triangle object" << endl;
-
+				cout << "format: all #'s seperated by spaces\ntriangle1 sides: 1 2 3 \n"
+					 << "than the operator you wish to apply +/-/*// \n"
+					 << "finally triangle2 sides: 1 2 3. \n"
+					 << "a:a b:b c:c ratios applied to sides" << endl;
+				while (true)
+				{
+					cout << "> ";
+					cin >>tx.side_a >>tx.side_b >> tx.side_c >> op >>ty.side_a >>ty.side_b >>ty.side_c ;
+					if ((op == '/' &&  tx.side_a == 0) ||
+						(op == '/' &&  tx.side_b == 0) ||
+						(op == '/' &&  tx.side_c == 0) ||
+						(op == '/' &&  ty.side_a == 0) ||
+						(op == '/' &&  ty.side_b == 0) ||
+						(op == '/' &&  ty.side_c == 0  ))					
+					{
+						cout << "zero division error" << endl;
+						continue;
+					}
+					else if (!cin)
+					{
+						cout << "bad input entered" << endl;
+						cin.clear();
+						cin.ignore(100, '\n');
+						continue;
+					}
+					else
+					{
+						tri_result = c.triangleMathOperation(tx, op, ty);
+						opCount++;
+						if (tri_result->isTriangle() == true) {
+							tri_result->update_triangle();
+							cout << " [" << opCount << "] "
+								<< " new Triangle has the following properties:" << endl;
+							tri_result->showTriangle();
+						}
+						else {
+							cout << "the new triangle was not a good triangle try again" << endl;
+							continue;
+						}									
+					}
+				}
 				break;
 			case '3':
-				cout << "you chose to calculte a circle object" << endl;
+				cout << "you chose to calculte 2D Vectors object" << endl;
+				cout << "format: spaces seperate the x and y values " << endl;
+				cout << "Vector1 x y  +/-/*// Vector2 xy \n " 				
+					 << "x1:x2  y1:y2 pattern of applied opperations" << endl;
+				while (true)
+				{
+					cout << "> ";
+					cin >> vx.x >> vx.y >> op >> vy.x >> vy.y >> ty.side_c;
+					
+					if (!cin)
+					{
+						cout << "bad input entered" << endl;
+						cin.clear();
+						cin.ignore(100, '\n');
+						continue;
+					}
+					else
+					{
+						vect_result = c.vectorMathOperation(vx, op, vy);  
+						opCount++;
+										
+							cout << " [" << opCount << "] "
+								 << " The new Vector has the following properties:" << endl;
+							vect_result->showAllData();			
+						
+						continue;						
+					}
+				}
+				break;
 				
 			case '4':
 				cout << "you chose to calculate a 2D vector  << endl";
@@ -126,6 +198,7 @@ int main()
  			break;
 		default:
 			cout << "invalid operation";
+			break;
 	}
   
 	return 0;
@@ -169,61 +242,3 @@ char mainMenuChoice()
 			return temp;
 		}
 		
-
-
-/*
-
-
-	cout << setprecision(8) << fixed;
-	double x = 10.0;
-	double y = 30.0; //*DEGREE;//(PI)/4*DEGREE;
-	double z = 50.0;
-	double t, k, l;
-	//squareLoop(1, 10);
-	//cout << squareLoop(1, 10);
-	t = 0;
-	k = x / z;
-	l = 16;
-	
-
-	Shape testthing;
-	testthing.shapes.squareObject.setArea(100);
-	testthing.shapes.squareObject.showSquare();
-
-	Shape testSquare;
-	testSquare.shapes.squareObject.setSideLength(5);
-	testSquare.shapes.squareObject.showSquare();
-	string testerthing = "Square";
-	Square test;
-	Shape testSq; //= testthing + testSquare;
-	test.side = testSq.makeNewSquare();
-	test.adjust_all();
-	
-	//Shape test2;
-	
-	
-
-	test.showSquare();
-	test.setArea(36);
-	test.showSquare();
-	Square test2(100);
-	test2.showSquare();
-	Square test3 = test2 * 4.0/7.5;
-	test3.showSquare();
-	Vector v(40,45,'p');
-	Vector v1(2,3, 'p');
-	Vector v3 = v/v1;
-	v3.showAllData();
-	if (v > 40)
-		 cout << "v is bigger" << endl;
-  else if (v == 40)
-  		 cout << "v and 40 are equal" << endl;
-	 else if (v < 40)
-	 			cout << "40 is bigger" << endl;
-	 			else
-	 			  cout << "dont know what is bigger" << endl;
-
-
-
-
-*/
