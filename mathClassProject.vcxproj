@@ -72,9 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -150,27 +152,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="algebra.cpp" />
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="exceptionHandler.cpp" />
-    <ClCompile Include="mathClassProject.cpp" />
     <ClCompile Include="Numbers.cpp" />
-    <ClCompile Include="parametric.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Square.cpp" />
-    <ClCompile Include="testVect.cpp" />
+    <ClCompile Include="driverTestProgram.cpp" />
     <ClCompile Include="ThreeDimensional.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TwoDimensional.cpp" />
     <ClCompile Include="vect.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algebra.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="exceptionHandler.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Numbers.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="ThreeDimensional.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="TwoDimensional.h" />
     <ClInclude Include="vect.h" />
     <ClInclude Include="Vector3D.h" />

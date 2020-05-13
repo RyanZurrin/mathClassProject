@@ -1,20 +1,26 @@
 #include "Vector3D.h"
+#include "exceptionHandler.h"
 using namespace std;
+
 Vector3D::Vector3D() //constructor
 {
   x=0;
   y=0;
   z=0;
+ // _ptr3d = nullptr;
+ // _ptr2d = nullptr;
   set_allAngles();
   object_counter++;
-	cout<< object_counter << ": " <<"in the 3dVector default constructor"<<endl;
+  cout<< object_counter << ": " <<"in the 3dVector default constructor"<<endl;
 }
-Vector3D::Vector3D(ld x1,ld y1,ld z1)  //initializing object with values.
+Vector3D::Vector3D(double x1,double y1,double z1)  //initializing object with values.
 {
   x=x1;
   y=y1;
   z=z1;
-  magnitude = returnMagnitude();
+ // _ptr3d = nullptr;
+ // _ptr2d = nullptr;
+  set_magnitude();
   set_allAngles();  
   object_counter++;
 	cout<< object_counter << ": " <<"in the x,y,z constructor" << endl;;
@@ -24,26 +30,64 @@ Vector3D::Vector3D(const Vector3D &vec)
   x=vec.x;
   y=vec.y;
   z=vec.z;
-  magnitude = returnMagnitude();
+  //_ptr3d = vec._ptr3d;
+ // _ptr2d = vec._ptr2d;
+  set_magnitude();
   set_allAngles();
   object_counter++;
 	cout<< object_counter << ": " <<"in the 3dcopy constructor";
 }
+void Vector3D::setX(double _x)
+{
+    x = _x;
+    set_allAngles();
+    set_magnitude();
+}
+void Vector3D::setY(double _y)
+{
+    y = _y;
+    set_allAngles();
+    set_magnitude();
+}
+void Vector3D::setZ(double _z)
+{
+    z = _z;
+    set_allAngles();
+    set_magnitude();
+}
+void Vector3D::set_xAngle(double _xa)
+{
+    xAngle = _xa;
+    set_allAngles();
+    set_magnitude();
+}
+void Vector3D::set_yAngle(double _ya)
+{
+    yAngle = _ya;
+    set_allAngles();
+    set_magnitude();
+}
+void Vector3D::set_zAngle(double _za)
+{
+    zAngle = _za;
+    set_allAngles();
+    set_magnitude();
+}
 void Vector3D::showAllData()
 {
-    magnitude = returnMagnitude();
-    cout<< setprecision(2) << fixed;
+    magnitude = find_magnitude();
+    cout<< setprecision(9) << fixed;
   	cout<< "x: " << x << " ";
     cout<< "y: " << y << " ";
     cout<< "z: " << z << endl;
     cout<< "mag: " << magnitude << endl;
     cout << "angles aX: "<< xAngle << ", aY: "<<yAngle<<", aZ: "<<zAngle
          << endl;		
-	return_mode('p');	  
+	show_mode();	  
 }
 void Vector3D::showPolarCord()const
 {
-	cout << "polar<" << x << ", " << y << ", " << z << ">" << endl;
+	cout << setprecision(9) << fixed << "polar<" << x << ", " << y << ", " << z << ">" << endl;
 }
 void Vector3D::set_allAngles()
 {
@@ -51,6 +95,31 @@ void Vector3D::set_allAngles()
     yAngle = return_yAngle();
     zAngle = return_zAngle();
     //angle = 
+}
+
+void Vector3D::set_magnitude()
+{
+    magnitude = find_magnitude();
+}
+
+Vector3D Vector3D::check_division(double d)
+{
+    cout << "in 3Doperator/check division double\n";
+    ExceptionHandler checker;
+    if (checker.zeroDivisorCheck(d) == 0 && checker.checkedFlag == false) {
+        checker.checkedFlag = true;
+        Vector3D temp(x / d, y / d, z / d);
+        set_allAngles();
+        return temp;
+    }
+    else if (checker.zeroDivisorCheck(d) != 0 && checker.checkedFlag == false) {
+        d = checker.zeroDivideFix(d);
+        checker.checkedFlag = true;
+        Vector3D temp(x / d, y / d, z / d);
+        set_allAngles();
+        return temp;
+    }
+    return *this;
 }
 
 //addition
@@ -80,7 +149,7 @@ Vector3D Vector3D::operator-(const Vector3D &vec)
 {
     return Vector3D(x-vec.x,y-vec.y,z-vec.z);
 }
-Vector3D Vector3D::operator-(const ld n) const
+Vector3D Vector3D::operator-(const double n) const
 {
     return Vector3D(x-n, y-n, z-n);
 }
@@ -106,11 +175,11 @@ Vector3D &Vector3D::operator-=(const Vector3D &vec)
 }
 
 //scalar multiplication
-Vector3D Vector3D::operator*(ld value)
+Vector3D Vector3D::operator*(double value)
 {
     return Vector3D(x*value,y*value,z*value);
 }
-Vector3D &Vector3D::operator*=(ld value)
+Vector3D &Vector3D::operator*=(double value)
 {
     x*=value;
     y*=value;
@@ -120,66 +189,23 @@ Vector3D &Vector3D::operator*=(ld value)
 }
 
 //scalar division
-Vector3D* Vector3D::operator/(ld d)
-{
-      
-    do{
-    if (d != 0) {
-        Vector3D* temp;
-        temp = new Vector3D(x / d, y / d, z / d);
-        return temp;
-        cout << "deleting temp in divide operater" << endl;
-        delete temp;
-    }        
-    else
-    {
-        do
-        {
-            cout << "**ERROR** can't divide by 0, enter new number\n>";
-            cin >> d;
-            cin.clear();
-            cin.ignore(100, '\n');
-        } while (!cin || d == 0);
-      }
-    } while (d != 0 && !cin == false);
-}
+
 Vector3D Vector3D::operator/(double d)
 {
-    do {
-        if (d != 0) {
-            return Vector3D(x / d, y / d, z / d);
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> d;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || d == 0);
-        }
-    } while (d != 0 && !cin == false);  
+    return check_division(d);
+   
 }
 Vector3D Vector3D::operator/(int d)
 {
-    do {
-        if (d != 0) {
-            return Vector3D(x / d, y / d, z / d);
-        }
-        else
-        {
-            do {
-                cout << "**ERROR** can't divide by 0, enter new number\n>";
-                cin >> d;
-                cin.clear();
-                cin.ignore(100, '\n');
-            } while (!cin || d == 0);
-        }
-    } while (d != 0 && !cin == false); 
+    return check_division(d);
+   
 }
-Vector3D &Vector3D::operator/=(ld value)
+
+Vector3D &Vector3D::operator/=(double value)
 {
-    assert(value!=0);
+    cout << "in 3D operator/= double value\n";
+    ExceptionHandler checker;
+    checker.zeroDivisorCheck(value);
     x/=value;
     y/=value;
     z/=value;
@@ -207,60 +233,60 @@ ostream& operator<<(ostream& os, const Vector3D & v)
 
 
 //Dot product
-ld Vector3D::dot_product(const Vector3D &vec)
+double Vector3D::dot_product(const Vector3D &vec)
 {
-    return x*vec.x+vec.y*y+vec.z*z;
+    return x * vec.x + vec.y * y + vec.z * z;
 }
 //cross product
 Vector3D Vector3D::cross_product(const Vector3D &vec)
 {
-    ld ni=y*vec.z-z*vec.y;
-    ld nj=z*vec.x-x*vec.z;
-    ld nk=x*vec.y-y*vec.x;
+    double ni=y*vec.z-z*vec.y;
+    double nj=z*vec.x-x*vec.z;
+    double nk=x*vec.y-y*vec.x;
     return Vector3D(ni,nj,nk);
 }
-ld Vector3D::returnMagnitude()
+double Vector3D::find_magnitude()
 {
     return sqrt(square());
 }
-ld Vector3D::square()
+double Vector3D::square()
 {
     return x*x+y*y+z*z;
 }
 Vector3D Vector3D::normalization()
 {
-    assert(returnMagnitude()!=0);
-    *this/=returnMagnitude();
+    assert(find_magnitude()!=0);
+    *this/=find_magnitude();
     return *this;
 }
 
 
-ld Vector3D::distance(const Vector3D &vec)
+double Vector3D::distance(const Vector3D &vec)
 {
     Vector3D dist=*this-vec;
-    return dist.returnMagnitude();
+    return dist.find_magnitude();
 }
-ld Vector3D::returnX()
+double Vector3D::returnX()
 {
     return x;
 }
-ld Vector3D::returnY()
+double Vector3D::returnY()
 {
     return y;
 }
-ld Vector3D::returnZ()
+double Vector3D::returnZ()
 {
     return z;
 }
-ld Vector3D::return_xAngle()
+double Vector3D::return_xAngle()const
 {
     return atan2(sqrt(y * y + z * z), x) * DEGREE;
 }
-ld Vector3D::return_yAngle()
+double Vector3D::return_yAngle()const
 {
     return atan2(sqrt(x * x + z * z), y) * DEGREE;
 }
-ld Vector3D::return_zAngle()
+double Vector3D::return_zAngle()const
 {
     return atan2(sqrt(x * x  + y * y), z) * DEGREE;
 }
