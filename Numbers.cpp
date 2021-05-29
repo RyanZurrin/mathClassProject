@@ -1,15 +1,14 @@
 #include "Numbers.h"
+
+#include <iomanip>
+
 #include "exceptionHandler.h"
 
-Numbers::Numbers()
-{
+Numbers::Numbers() = default;
 
-	
-}
-
-void Numbers::printOutMap(int min, int max)
+void Numbers::printOutMap()
 {
-	for (int i = min; i < max; i++) {
+	for (int i = 0; i < 101; i++) {
 		cout << setprecision(9) << fixed;
 		double decNum = sqrt(i);
 		string num = to_string(i);
@@ -17,7 +16,7 @@ void Numbers::printOutMap(int min, int max)
 		string toMap = str + num;
 		cout << toMap << " = " << decNum << endl;
 		squareRootsList.emplace(decNum, toMap);
-		//cout << squareRootsList.at(decNum) << endl;
+		cout << squareRootsList.at(decNum) << endl;
 	}
 }
 
@@ -27,7 +26,7 @@ void Numbers::addNumTranslation(double num)
 	cout << "\nyou are translating the number\n" << num
 		<< " to your desired string enter symbolic link now\n>";
 	getline(cin, userInput);
-	squareRootsList.emplace(num, userInput);	
+	squareRootsList.emplace(num, userInput);
 }
 
 double Numbers::checkSquareRoot(double num)

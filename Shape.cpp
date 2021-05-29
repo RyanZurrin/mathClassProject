@@ -40,6 +40,4 @@ Triangle Shape::makeNewTriangle()
 }
 */
 
-Shape::~Shape()
-{
-}
+

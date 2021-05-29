@@ -2,7 +2,7 @@
 FileName=CalculateFinalProject.dev
 Name=CalculateFinalProject
 Type=1
-Ver=2
+Ver=1
 ObjFiles=
 Includes=
 Libs=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=00000000g0000000000000000
-UnitCount=27
+UnitCount=30
 
 [VersionInfo]
 Major=1
@@ -271,16 +271,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit23]
-FileName=driverTestProgram.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit24]
 FileName=Calculator.cpp
 CompileCpp=1
 Folder=
@@ -290,7 +280,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit25]
+[Unit24]
 FileName=Calculator.h
 CompileCpp=1
 Folder=
@@ -300,7 +290,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit26]
+[Unit25]
 FileName=Triangle.cpp
 CompileCpp=1
 Folder=
@@ -310,10 +300,50 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit27]
+[Unit26]
 FileName=Triangle.h
 CompileCpp=1
 Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit27]
+FileName=Sphere.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit29]
+FileName=Input_list.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit28]
+FileName=Sphere.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit30]
+FileName=calculatorCLI.cpp
+CompileCpp=1
+Folder=CalculateFinalProject
 Compile=1
 Link=1
 Priority=1000

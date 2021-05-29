@@ -10,11 +10,11 @@
 #include <iostream>
 using namespace std;
 
-class Square 
+class Square
 {
 //friend class TwoDimensional;
 
-	//these private member functions are for updating data when a user changes 
+	//these private member functions are for updating data when a user changes
 	//object data
 public:
 	Square* _sqrPtr;
@@ -45,7 +45,7 @@ public:
 	template<typename T> T setParimeter(T);
 	*/
 	void	adjust_all();
-	// data accessors 
+	// data accessors
 	void showSquare()const;
 	void showSideLength()const;
 	void showArea()const;
@@ -69,8 +69,8 @@ public:
 	bool operator==(const double& n)const { return area == n; }
 	bool operator!=(const double& n)const { return !(area == n); }
 
-	//overloaded additon operators	
-	
+	//overloaded additon operators
+
 	Square operator+()const;
 	Square operator++();
 	Square operator++(int);
@@ -80,7 +80,7 @@ public:
 	friend Square operator+(double num, Square&);
 	friend Square operator+(Square lhs, const Square&);
 
-	// overloaded subtraction operators 
+	// overloaded subtraction operators
 	Square operator-()const;
 	Square operator--();
 	Square operator--(int);
@@ -91,7 +91,7 @@ public:
 	friend Square operator-(Square lhs, const Square&);
 
 	Square operator*(double value)const;   // multiply
-	
+
 	friend Square operator*(double s, Square& v);
 	friend Square operator*(Square& v, Square& s);
 	Square operator/(double);    //division
@@ -106,10 +106,7 @@ public:
 	operator string();
 	*/
 
-	~Square()
-	{
-		cout << "in the square desructor" << endl;
-	}
+	~Square() = default;
 };
 #endif // !SQUARE_H
 

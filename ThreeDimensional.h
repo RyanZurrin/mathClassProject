@@ -6,46 +6,22 @@
 
 #ifndef THREEDIMENSIONAL_H
 #define THREEDIMENSIONAL_H
+#include "Cube.h"
 #include "Vector3D.h"
+#include "Sphere.h"
 #include <iostream>
 using namespace std;
 
 class ThreeDimensional  //: public Shape
 {
-private:
-	//virtual void calculate_surface_area();
-	//virtual void calulate_volume();
-	//virtual void adjust_other_dimensions();
-	//virtual void setFaces(int);
-	//virtual void setEdges(int);
-	//virtual void setVirtices(int);
 public:
-	ThreeDimensional()
-	{
-		cout << "in the 3D constructor";
-	}
-	//double numFaces, numEdges, numVertices;
-	//double surfaceArea;
-	//double volume;
+	ThreeDimensional* _3Dptr;
 
-	
-
-	//void setSurfaceArea(double);
-	//void setVolume(double);
-
-	
-
-	//int returnFaces()const;
-	//int returnEdges()const;
-	//int returnVirticies()const;
-	//double returnVolume()const;
-	//double returnSurfaceArea();
-
-	//void showAllData()const;
-	~ThreeDimensional()
-	{
-		cout << "in the 3D destructor";
-	}
+	ThreeDimensional();
+	Cube box;
+	Vector3D vect3D;
+	Sphere orb;
+	~ThreeDimensional() = default;
 };
 
 #endif // !THREEDIMENSIONAL_H

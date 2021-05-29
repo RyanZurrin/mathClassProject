@@ -1,7 +1,7 @@
 // Part of a final project in c++ II, this program as a whole
 // will calculate the properties of 2D and 3D objects and vectors
 
-// prgrammer:   Ryan Zurrin
+// programmer:   Ryan Zurrin
 #include "Cube.h"
 
 Cube::Cube()
@@ -39,7 +39,7 @@ void Cube::setEdgeLength(double el)
 		edgeLenght = el;
 		calculate_volume();
 		calculate_surface_area();
-	}	
+	}
 }
 
 void Cube::setVolume(double v)
@@ -84,25 +84,31 @@ void Cube::calculate_surface_area()
 void Cube::calculate_edge()
 {
 	if (surfaceArea != 0) {
-		edgeLenght = returEdgefromSurfaceArea();
+		edgeLenght = returnEdgeFromSurfaceArea();
 	}
 	else if (volume != 0) {
-		edgeLenght = returnEdgefromVolume();
+		edgeLenght = returnEdgeFromVolume();
 	}
 }
 
 void Cube::showAllSquareInfo()
 {
+	cout << "Edge Length: " << edgeLenght << endl;
+	cout << "Volume: " << volume << endl;
+	cout << "Surface Area: " << surfaceArea	<< endl;
 }
 
 void Cube::showEdgeLength()
 {
+	cout << "Edge Length: " << edgeLenght << endl;
 }
 
 void Cube::showVolume()
 {
+	cout << "Volume: " << volume << endl;
 }
 
 void Cube::showSurfaceArea()
 {
+	cout << "Surface Area: " << surfaceArea	<< endl;
 }

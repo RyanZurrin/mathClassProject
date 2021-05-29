@@ -1,0 +1,43 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "asio"
+				}
+			],
+			"targets" : []
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/cppTESTing/finalProgram/mathClassProject/mathClassProject/retry/mathClassProject/mathClassProject/vcpkg-master(1)/vcpkg-master/ports/asio/out/build/x64-Debug (default)",
+		"source" : "E:/cppTESTing/finalProgram/mathClassProject/mathClassProject/retry/mathClassProject/mathClassProject/vcpkg-master(1)/vcpkg-master/ports/asio"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -342,3 +342,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Eigen/src/Eigenvalues
+/My Advisor Results - mathClassProject

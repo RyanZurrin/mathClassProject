@@ -6,14 +6,17 @@
 
 Calculator::Calculator()
 {
+	calculate = nullptr;
+
+
 	sqpt = new Square;
 	sqpt->side = 0;
 	sqpt->area = 0;
 	sqpt->parimeter = 0;
 
 	triptr = new Triangle;
-	triptr->base = 0;
-	triptr->height = 0;
+	triptr->maxside = 0;
+	triptr->height_a = 0;
 	triptr->side_a = 0;
 	triptr->side_b = 0;
 	triptr->side_c = 0;
@@ -21,16 +24,16 @@ Calculator::Calculator()
 	triptr->angle_B = 0;
 	triptr->angle_C = 0;
 	triptr->area = 0;
-	triptr->parameter = 0;
-	triptr->sss = 0;
-	triptr->aaa = 0;
-	triptr->sas = 0;
-	triptr->ssa = 0;
-	triptr->asa = 0;
-	triptr->aas = 0;
+	triptr->perimeter = 0;
+	triptr->sssFlag = 0;
+	triptr->aaaFlag = 0;
+	triptr->sasFlag = 0;
+	triptr->ssaFlag = 0;
+	triptr->asaFlag = 0;
+	triptr->aasFlag = 0;
 	triptr->sVal = 0;
 	triptr->rVal = 0;
-	
+
 	vectptr = new Vector;
 	vectptr->x = 0;
 	vectptr->y = 0;
@@ -39,7 +42,32 @@ Calculator::Calculator()
 	vectptr->arcLength = 0;
 	vectptr->mode = 'r';
 
-	
+	vect3Dptr = new Vector3D;
+	vect3Dptr->x = 0;
+	vect3Dptr->y = 0;
+	vect3Dptr->z = 0;
+	vect3Dptr->xAngle = 0;
+	vect3Dptr->yAngle = 0;
+	vect3Dptr->zAngle = 0;
+	vect3Dptr->arcLength = 0;
+	vect3Dptr->mode = 'r';
+	vect3Dptr->angle = 0;
+
+	cubeptr = new Cube;
+	cubeptr->volume = 0;
+	cubeptr->edgeLenght = 0;
+	cubeptr->surfaceArea = 0;
+
+	orbptr = new Sphere;
+	orbptr->circumfrance = 0;
+	orbptr->diameter = 0;
+	orbptr->radius = 0;
+	orbptr->surfaceArea = 0;
+	orbptr->volume = 0;
+
+
+
+
 }
 
 double Calculator::basicMathOperation(double x, char op0, double y)
@@ -59,12 +87,12 @@ double Calculator::basicMathOperation(double x, char op0, double y)
 			return x / y;
 			break;
 		case '=':
-			if (x == y) 
-				return true;			
+			if (x == y)
+				return true;
 			return false;
 			break;
 		case '<':
-			if (x < y) 
+			if (x < y)
 				return true;
 			return false;
 			break;
@@ -73,17 +101,20 @@ double Calculator::basicMathOperation(double x, char op0, double y)
 				return true;
 			return false;
 			break;
-	
+		case '~':
+			break;
 		default:
-			return 0.0;
-	}	
+			cout << "bad operation";
+			break;
+	}
+	return 0;
 }
 
 Square* Calculator::squareMathOperation(Square &sx, char op0, Square &sy)
 {
 	switch (op0)
 	{
-	case '+':	
+	case '+':
 		sqpt->side = sx.side + sy.side;
 		return  sqpt;
 		break;
@@ -114,11 +145,12 @@ Square* Calculator::squareMathOperation(Square &sx, char op0, Square &sy)
 			cout << "true";
 		cout << "false";
 		break;
-	
+	case '~':
+		break;
 	default:
 		cout << "invalid operation performed";
-		return 0;
-	}	
+		break;
+	}
 	return sqpt;
 }
 
@@ -170,10 +202,11 @@ Triangle* Calculator::triangleMathOperation(Triangle& tx, char op0, Triangle& ty
 			cout << "true";
 		cout << "false";
 		break;
-
+	case '~':
+		break;
 	default:
 		cout << "invalid operation performed";
-		return 0;
+		break;
 	}
 	return triptr;
 }
@@ -237,13 +270,165 @@ Vector* Calculator::vectorMathOperation(Vector& vx, char op0, Vector& vy)
 		cout << "distance between the two vectors is: " << vx.distance(vy) << endl;
 		break;
 	case '~':
-		cout << "Thank you for using the Object calculator ver 1.0\n"
-			<< "Look out for new features to be added on GitHub Regularly\n"
-			<< "https://github.com/RyanZurrin/mathClassProject";
-
+		break;
 	default:
 		cout << "invalid operation performed";
-		return 0;
+		break;
 	}
 	return vectptr;
+}
+
+Vector3D* Calculator::vector3DMathOperation(Vector3D& vx, char op0, Vector3D& vy)
+{
+	switch (op0)
+	{
+	case '+':
+		vect3Dptr->x = vx.x + vy.x;
+		vect3Dptr->y = vx.y + vy.y;
+		vect3Dptr->z = vx.z + vy.z;
+		vect3Dptr->set_allAngles();
+		vect3Dptr->set_magnitude();
+		return  vect3Dptr;
+		break;
+	case '-':
+		vect3Dptr->x = vx.x - vy.x;
+		vect3Dptr->y = vx.y - vy.y;
+		vect3Dptr->z = vx.z - vy.z;
+		vect3Dptr->set_allAngles();
+		vect3Dptr->set_magnitude();
+		return  vect3Dptr;
+		break;
+	case '*':
+		vect3Dptr->x = vx.x * vy.x;
+		vect3Dptr->y = vx.y * vy.y;
+		vect3Dptr->z = vx.z * vy.z;
+		vect3Dptr->set_allAngles();
+		vect3Dptr->set_magnitude();
+		return  vect3Dptr;
+		break;
+	case '/':
+		vect3Dptr->x = vx.x / vy.x;
+		vect3Dptr->y = vx.y / vy.y;
+		vect3Dptr->z = vx.z / vy.z;
+		vect3Dptr->set_allAngles();
+		vect3Dptr->set_magnitude();
+		return  vect3Dptr;
+		break;
+	case '=':
+		if (vx.x == vy.x && vx.y == vy.y && vx.z == vy.z)
+			cout << "true";
+		cout << "false";
+		break;
+	case '<':
+		if (vx.magnitude < vy.magnitude)
+			cout << "true";
+		cout << "false";
+		break;
+	case '>':
+		if (vx.magnitude > vy.magnitude)
+			cout << "true";
+		cout << "false";
+		break;
+	case '$':
+		cout << "distance between the two vectors is: " << vx.distance(vy) << endl;
+		break;
+	case '~':
+		exit(0);
+	default:
+		cout << "invalid operation performed";
+		break;
+	}
+	return vect3Dptr;
+}
+
+
+Cube* Calculator::cubeMathOperation(Cube& x, char op0, Cube& y)
+{
+	bool badFlag = false;
+	do{
+
+		switch (op0)
+		{
+		case '+':
+			cubeptr->edgeLenght = x.edgeLenght + y.edgeLenght;
+			return  cubeptr;
+		case '-':
+			cubeptr->edgeLenght = x.edgeLenght - y.edgeLenght;
+			return cubeptr;
+		case '*':
+			cubeptr->edgeLenght = x.edgeLenght * y.edgeLenght;
+			return  cubeptr;
+		case '/':
+			cubeptr->edgeLenght = x.edgeLenght / y.edgeLenght;
+			return cubeptr;
+		case '=':
+			if (x.edgeLenght == y.edgeLenght)
+				cout << "true";
+			cout << "false";
+			break;
+		case '<':
+			if (x.edgeLenght < y.edgeLenght)
+				cout << "true";
+			cout << "false";
+			break;
+		case '>':
+			if (x.edgeLenght > y.edgeLenght)
+				cout << "true";
+			cout << "false";
+			break;
+		case '~':
+			exit(0);
+		default:
+			cout << "invalid operation performed, try again\n>>";
+			badFlag = true;
+		}
+
+	}
+	while (badFlag == true);
+
+	return cubeptr;
+}
+
+Sphere* Calculator::sphereMathOperation(Sphere& x, char op0, Sphere& y)
+{
+	switch (op0)
+	{
+	case '+':
+		orbptr->radius = x.radius + y.radius;
+		return  orbptr;
+		break;
+	case '-':
+		orbptr->radius = x.radius - y.radius;
+		return  orbptr;
+		break;
+	case '*':
+		orbptr->radius = x.radius * y.radius;
+		return  orbptr;
+		break;
+	case '/':
+		orbptr->radius = x.radius / y.radius;
+		return  orbptr;
+		break;
+	case '=':
+		if (x.radius == y.radius)
+			cout << "true";
+		cout << "false";
+		break;
+	case '<':
+		if (x.radius < y.radius)
+			cout << "true";
+		cout << "false";
+		break;
+	case '>':
+		if (x.radius > y.radius)
+			cout << "true";
+		cout << "false";
+		break;
+	case '~':
+		exit(0);
+	default:
+		cout << "invalid operation performed";
+		break;
+	}
+	return orbptr;
 }

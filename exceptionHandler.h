@@ -1,9 +1,3 @@
-#pragma once
-// Part of a final project in c++ II, this program as a whole
-// will calculate the properties of 2D and 3D objects and vectors
-
-// prgrammer:   Ryan Zurrin
-
 #ifndef EXCEPTIONHANDLER_H
 #define EXCEPTIONHANDLER_H
 #include <iostream>
@@ -132,7 +126,7 @@ inline Triangle* ExceptionHandler::badTriangle(Triangle* T)
 	else
 		temp->side_c = _c;
 	
-	if (temp->isTriangle() == true) {
+	if (temp->checkTriangle() == true) {
 		temp->update_triangle();
 		T->side_a = temp->side_a;
 		T->side_b = temp->side_b;
@@ -140,8 +134,10 @@ inline Triangle* ExceptionHandler::badTriangle(Triangle* T)
 		T->update_triangle();
 		return temp;
 	}
-	temp->update_triangle();
+	delete temp;
+	temp = nullptr;
 	return temp;
+	//temp->update_triangle();
 	
 }
 template<typename T>
@@ -157,6 +153,7 @@ inline T ExceptionHandler::negativeNumFix(T& num)
 			cin.ignore(100, '\n');
 			cin.clear();
 		} while (!cin || num < 0);
+		return num;
 	}
 	return num;
 }

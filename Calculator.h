@@ -6,32 +6,35 @@
 
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
-
-
-
+#include "Numbers.h"
 #include "Shape.h"
-//#include "ThreeDimensional.h"
-//#include "TwoDimensional.h"
 
 
-
-
-class Calculator// : public Numbers
+class Calculator : public Numbers
 {
 public:
 	Calculator();
 	Square* sqpt;
 	Triangle* triptr;
 	Vector* vectptr;
-	double basicMathOperation(double x, char op, double y);
-	Square *squareMathOperation(Square &x, char op0, Square &y);
+	Vector3D* vect3Dptr;
+	Cube* cubeptr;
+	Sphere* orbptr;
+	Calculator* calculate;
+
+	double basicMathOperation(double x, char op, double);
+	Square* squareMathOperation(Square& x, char op0, Square& y);
 	Triangle* triangleMathOperation(Triangle& x, char op0, Triangle& y);
+	//Triangle* triangleMathOperations(char m1, Triangle& x, char op, char m2, Triangle& y);
 	Vector* vectorMathOperation(Vector& x, char op0, Vector& y);
-	~Calculator()
-	{
-		cout << "in calculator destructor";
-		delete this;
-	}
+	Vector3D* vector3DMathOperation(Vector3D& x, char op0, Vector3D& y);
+	Cube* cubeMathOperation(Cube& x, char op0, Cube& y);
+	Sphere* sphereMathOperation(Sphere& x, char op0, Sphere& y);
+
+
+	~Calculator() = default;
+
 };
 
 #endif // !CALCULATOR_H
+

@@ -1,0 +1,43 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.9"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "sparsepp"
+				}
+			],
+			"targets" : []
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/cppTESTing/finalProgram/mathClassProject/mathClassProject/retry/mathClassProject/mathClassProject/vcpkg-master(1)/vcpkg-master/ports/sparsepp/out/build/x64-Debug (default)",
+		"source" : "E:/cppTESTing/finalProgram/mathClassProject/mathClassProject/retry/mathClassProject/mathClassProject/vcpkg-master(1)/vcpkg-master/ports/sparsepp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

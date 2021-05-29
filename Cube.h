@@ -15,7 +15,7 @@ class Cube
 	static int  cube_counter;
 public:
 	Cube();
-	Cube(double, char mode = 'e'); // constructor with a mode to switch from default side 
+	Cube(double, char mode = 'e'); // constructor with a mode to switch from default side
 	Cube* cubptr;				  // to volume with a ['v'/'V'] or to surface area with an 's'/'S'
 	double surfaceArea;
 	double volume;
@@ -35,18 +35,13 @@ public:
 	void showVolume();
 	void showSurfaceArea();
 
-	double returnSurfaceArea(){ return 6 * pow(edgeLenght, 2); }const
-	double returnVolume() { return pow(edgeLenght, 3); }const
-	double returnEdgefromVolume() { return pow(volume, 1 / 3); }const
-	double returEdgefromSurfaceArea() { return sqrt(surfaceArea / 6); }
-	double cube(double c) { return pow(c, 3); }
+	double returnSurfaceArea()const{ return 6 * pow(edgeLenght, 2); }
+	double returnVolume()const { return pow(edgeLenght, 3); }
+	double returnEdgeFromVolume()const { return pow(volume, 1 / 3); }
+	double returnEdgeFromSurfaceArea()const { return sqrt(surfaceArea / 6); }
+	double cube(double c)const { return pow(c, 3); }
 	static int returnCubeCounter() { return cube_counter; }
-	~Cube()
-	{
-		cout << "in the square destructor" << endl;
-		delete this;
-	}
-
+	~Cube() = default;
 };
 
 #endif // !CUBE_H

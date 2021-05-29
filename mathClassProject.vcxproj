@@ -23,7 +23,7 @@
     <ProjectGuid>{D6F0F578-963F-4E93-9FE5-526956EDC15C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>mathClassProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,11 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
+    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\retry\mathClassProject\mathClassProject\Eigen;C:\Program Files %28x86%29\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
+    <IncludePath>D:\cppTESTing\finalProgram\mathClassProject\mathClassProject\retry\mathClassProject\mathClassProject\Eigen;C:\Program Files %28x86%29\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -153,14 +153,16 @@
   <ItemGroup>
     <ClCompile Include="algebra.cpp" />
     <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="exceptionHandler.cpp" />
     <ClCompile Include="Numbers.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="Input_list.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Square.cpp" />
-    <ClCompile Include="driverTestProgram.cpp" />
+    <ClCompile Include="calculatorCLI.cpp" />
     <ClCompile Include="ThreeDimensional.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TwoDimensional.cpp" />
@@ -170,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="algebra.h" />
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="exceptionHandler.h" />
     <ClInclude Include="Input.h" />

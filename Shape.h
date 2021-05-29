@@ -1,9 +1,4 @@
 #pragma once
-// Part of a final project in c++ II, this program as a whole
-// will calculate the properties of 2D and 3D objects and vectors
-
-// prgrammer:   Ryan Zurrin
-
 #ifndef SHAPE_H
 #define SHAPE_H
 
@@ -19,22 +14,25 @@ class Shape : public Numbers
 public:
 	//Shape* ptr;
 	Shape(); // empty shape object created
-	
-	TwoDimensional shapes;	
-	ThreeDimensional objects;
-	Vector vect2d;
-	
-	~Shape();  //  destructor
+	//template<class T> T makeNewShape(string obj);
+	//Square makeNewSquare();
+	TwoDimensional shapes;
+	//Triangle makeNewTriangle();
 
-	
+	ThreeDimensional objects;
+	//Shape(string); // specify a shape to construct
+	~Shape() = default;
+		//  destructor
+
+
 	//ThreeDimensional* Object;
 };
 
 #endif // !SHAPE_H
 
 /*____________________________________________________________________________
-                                Junk Yard                                   */
- 
+								Junk Yard                                   */
+
 
 
 
